@@ -18,5 +18,5 @@ https://github.com/tomvictor/linu/releases/download/v0.0.1/linu-mac-arm64
 ## Start Application
 
 ```bash
-nohup app &
+nohup linu &
 ```
