@@ -8,15 +8,6 @@ Simple but mighty serial monitor app which live in your mac status bar. It will 
 
 ## Installation
 
-```bash
-go install github.com/tomvictor/linu@latest
-```
-else, download the latest binary from the latest release page. Then move it to you local $PATH and mark it as executable.  
+Download the latest binary from the latest release page. Then extract the zip file and move it to you App folder.  
 
-https://github.com/tomvictor/linu/releases/download/v0.0.1/linu-mac-arm64
-
-## Start Application
-
-```bash
-nohup linu &
-```
+(https://github.com/tomvictor/linu/releases/download/v0.0.1/linu.app.zip)
