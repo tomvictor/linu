@@ -13,6 +13,7 @@ func applicationCallback(n objc.Object) {
 		obj:              cocoa.NSStatusBar_System().StatusItemWithLength(cocoa.NSVariableStatusItemLength),
 		refreshActionSig: make(chan bool),
 		portActionSig:    make(chan string),
+		baudRateSig:      make(chan string),
 		mainMenu:         cocoa.NSMenu_New(),
 	}
 	appCtx.initialize()

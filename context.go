@@ -11,14 +11,19 @@ type AppCtx struct {
 	obj              cocoa.NSStatusItem
 	refreshActionSig chan bool
 	portActionSig    chan string
+	baudRateSig      chan string
 	mainMenu         cocoa.NSMenu
 	refreshMenu      cocoa.NSMenuItem
+	settingsMenu     cocoa.NSMenuItem
+	quitMenu         cocoa.NSMenuItem
 }
 
 func (app *AppCtx) initialize() {
 	app.obj.Retain()
 	app.obj.Button().SetTitle("🚀")
 	app.refreshMenu = createRefreshMenuItem(app.refreshActionSig)
+	app.settingsMenu = createSettingsMenu(app.baudRateSig)
+	app.quitMenu = createQuitMenu()
 }
 
 func (app *AppCtx) updateAppTitle(ports []string) {
@@ -35,8 +40,7 @@ func (app *AppCtx) reloadMainMenu(ports []string) {
 	fmt.Println("reloading")
 	app.mainMenu.RemoveAllItems()
 	app.mainMenu.AddItem(app.refreshMenu)
-	separatorItem := cocoa.NSMenuItem_Separator()
-	app.mainMenu.AddItem(separatorItem)
+	app.mainMenu.AddItem(createSeparator())
 	for _, port := range ports {
 		fmt.Printf("Found port: %v\n", port)
 		portItem := cocoa.NSMenuItem_New()
@@ -48,9 +52,10 @@ func (app *AppCtx) reloadMainMenu(ports []string) {
 		app.mainMenu.AddItem(portItem)
 	}
 
-	separatorItem2 := cocoa.NSMenuItem_Separator()
-	app.mainMenu.AddItem(separatorItem2)
-
-	app.mainMenu.AddItem(quitMenu())
+	app.mainMenu.AddItem(createSeparator())
+	app.mainMenu.AddItem(app.settingsMenu)
+	updateSettingsMenu(app.settingsMenu, app.baudRateSig)
+	app.mainMenu.AddItem(createSeparator())
+	app.mainMenu.AddItem(app.quitMenu)
 	app.obj.SetMenu(app.mainMenu)
 }
