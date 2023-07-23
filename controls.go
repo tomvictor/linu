@@ -22,6 +22,10 @@ func applicationControlPanel(appCtx AppCtx) {
 			openPort(port)
 		case <-appCtx.refreshActionSig:
 			appCtx.reloadMainMenu(ports)
+		case baudSel := <-appCtx.baudRateSig:
+			baudRate = baudSel
+			fmt.Println(baudSel)
+			appCtx.reloadMainMenu(ports)
 		}
 		appCtx.updateAppTitle(ports)
 	}

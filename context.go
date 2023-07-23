@@ -14,6 +14,7 @@ type AppCtx struct {
 	baudRateSig      chan string
 	mainMenu         cocoa.NSMenu
 	refreshMenu      cocoa.NSMenuItem
+	settingsMenu     cocoa.NSMenuItem
 	quitMenu         cocoa.NSMenuItem
 }
 
@@ -21,6 +22,7 @@ func (app *AppCtx) initialize() {
 	app.obj.Retain()
 	app.obj.Button().SetTitle("🚀")
 	app.refreshMenu = createRefreshMenuItem(app.refreshActionSig)
+	app.settingsMenu = createSettingsMenu(app.baudRateSig)
 	app.quitMenu = createQuitMenu()
 }
 
@@ -51,7 +53,8 @@ func (app *AppCtx) reloadMainMenu(ports []string) {
 	}
 
 	app.mainMenu.AddItem(createSeparator())
-	app.mainMenu.AddItem(createSettingsMenu(app.baudRateSig))
+	app.mainMenu.AddItem(app.settingsMenu)
+	updateSettingsMenu(app.settingsMenu, app.baudRateSig)
 	app.mainMenu.AddItem(createSeparator())
 	app.mainMenu.AddItem(app.quitMenu)
 	app.obj.SetMenu(app.mainMenu)
