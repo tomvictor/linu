@@ -5,18 +5,19 @@ import (
 	"github.com/progrium/macdriver/objc"
 )
 
+var appCtx AppCtx
+
 func applicationCallback(n objc.Object) {
 
-	refreshAction := make(chan bool)
-	portAction := make(chan string)
-
-	obj := cocoa.NSStatusBar_System().StatusItemWithLength(cocoa.NSVariableStatusItemLength)
-	obj.Retain()
-	obj.Button().SetTitle("🚀")
-
-	go applicationControlPanel(portAction, refreshAction, obj)
-
-	refreshAction <- true
+	appCtx = AppCtx{
+		obj:              cocoa.NSStatusBar_System().StatusItemWithLength(cocoa.NSVariableStatusItemLength),
+		refreshActionSig: make(chan bool),
+		portActionSig:    make(chan string),
+		mainMenu:         cocoa.NSMenu_New(),
+	}
+	appCtx.initialize()
+	go applicationControlPanel(appCtx)
+	appCtx.refreshActionSig <- true
 }
 
 func createCocoaApplication() cocoa.NSApplication {

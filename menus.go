@@ -16,8 +16,8 @@ func createRefreshMenuItem(refreshAction chan bool) cocoa.NSMenuItem {
 }
 
 func quitMenu() cocoa.NSMenuItem {
-	itemQuit := cocoa.NSMenuItem_New()
-	itemQuit.SetTitle("Quit")
-	itemQuit.SetAction(objc.Sel("terminate:"))
-	return itemQuit
+	quitMenu := cocoa.NSMenuItem_New()
+	quitMenu.SetTitle("Quit")
+	quitMenu.SetAction(objc.Sel("terminate:"))
+	return quitMenu
 }
