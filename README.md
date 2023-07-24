@@ -3,7 +3,7 @@
 Simple but mighty serial monitor app which live in your mac status bar. It will refresh every minute and list the available serial port. Manual refresh option is also available. More awesome features wil be added soon. Thanks Linus Sjunnesson for the idea. 
 
 
-![Linu - Mighty serial monitor for mac](https://github.com/tomvictor/linu/blob/main/assets/img1.png?raw=true)
+![Linu - Mighty serial monitor for mac](https://github.com/tomvictor/linu/blob/main/assets/img-r2.png?raw=true)
 
 ![Linu - Mighty serial monitor for mac](https://github.com/tomvictor/linu/blob/main/assets/img2.png?raw=true)
 
