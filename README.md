@@ -5,6 +5,8 @@ Simple but mighty serial monitor app which live in your mac status bar. It will 
 
 ![Linu - Mighty serial monitor for mac](https://github.com/tomvictor/linu/blob/main/assets/img1.png?raw=true)
 
+![Linu - Mighty serial monitor for mac](https://github.com/tomvictor/linu/blob/main/assets/img2.png?raw=true)
+
 
 ## Installation
 
